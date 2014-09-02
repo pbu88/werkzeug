@@ -491,10 +491,11 @@ def url_fix(s, charset='utf-8'):
     :param charset: The target charset for the URL if the url was given as
                     unicode string.
     """
+    import pdb;pdb.set_trace()
     scheme, netloc, path, qs, anchor = url_parse(to_unicode(s, charset, 'replace'))
     path = url_quote(path, charset, safe='/%+$!*\'(),')
     qs = url_quote_plus(qs, charset, safe=':&%=+$!*\'(),')
-    return to_native(url_unparse((scheme, netloc, path, qs, anchor)))
+    return to_native(url_unparse((scheme, netloc, path, qs, anchor)), charset)
 
 
 def uri_to_iri(uri, charset='utf-8', errors='replace'):
